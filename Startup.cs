@@ -2,11 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LanguageTrainer.API.DBModels;
+using LanguageTrainer.API.Repository;
+using LanguageTrainer.API.Repository.Interfaces;
 using LanguageTrainer.API.Services;
 using LanguageTrainer.API.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,7 +30,10 @@ namespace LanguageTrainer.API
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IArticleService>(new ArticleService());
+            services.AddDbContext<LanguageTrainerContext>(options =>
+                { options.UseSqlServer(Configuration.GetConnectionString("SqlConnectionString")); });
+            services.AddSingleton<IUnitOfWork, UnitOfWork>();
+            services.AddSingleton<IArticleService, ArticleService>();
             services.AddControllers();
         }
 
