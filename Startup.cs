@@ -32,8 +32,8 @@ namespace LanguageTrainer.API
         {
             services.AddDbContext<LanguageTrainerContext>(options =>
                 { options.UseSqlServer(Configuration.GetConnectionString("SqlConnectionString")); });
-            services.AddSingleton<IUnitOfWork, UnitOfWork>();
-            services.AddSingleton<IArticleService, ArticleService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IArticleService, ArticleService>();
             services.AddControllers();
         }
 

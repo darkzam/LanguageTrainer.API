@@ -1,5 +1,6 @@
 ﻿using LanguageTrainer.API.Models.Article;
 using LanguageTrainer.API.Repository;
+using LanguageTrainer.API.Repository.Interfaces;
 using LanguageTrainer.API.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,9 @@ namespace LanguageTrainer.API.Services
 {
     public class ArticleService : IArticleService
     {
-        private readonly UnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ArticleService(UnitOfWork unitOfWork)
+        public ArticleService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
