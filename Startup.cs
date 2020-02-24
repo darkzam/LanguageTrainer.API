@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using LanguageTrainer.API.DBModels;
 using LanguageTrainer.API.Repository;
 using LanguageTrainer.API.Repository.Interfaces;
@@ -34,6 +35,7 @@ namespace LanguageTrainer.API
                 { options.UseSqlServer(Configuration.GetConnectionString("SqlConnectionString")); });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IArticleService, ArticleService>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllers();
         }
 
