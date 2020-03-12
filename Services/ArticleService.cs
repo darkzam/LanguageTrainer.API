@@ -15,10 +15,11 @@ namespace LanguageTrainer.API.Services
 
         public ArticleService(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork ?? 
+                throw new ArgumentNullException(nameof(unitOfWork));
         }
 
-        public Article CreateArticle(Article article)
+        public Article Create(Article article)
         {
             _unitOfWork.Articles.Add(article);
             _unitOfWork.Complete();
@@ -26,19 +27,28 @@ namespace LanguageTrainer.API.Services
             return article;
         }
 
-        public List<Article> GetArticles()
+        public List<Article> GetAll()
         {
             return (List<Article>)_unitOfWork.Articles.GetAll();
         }
 
-        public Article GetArticle(int id)
+        public Article Get(int id)
         {
             return _unitOfWork.Articles.Get(id);
         }
 
-        public Article Update(int id)
+        public Article Update(Article article)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Articles.Update(article);
+            _unitOfWork.Complete();
+
+            return _unitOfWork.Articles.Get(article.Id);
+        }
+
+        public int Remove(Article article)
+        {
+            _unitOfWork.Articles.Remove(article);
+            return _unitOfWork.Complete();
         }
     }
 }

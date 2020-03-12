@@ -26,7 +26,7 @@ namespace LanguageTrainer.API.Controllers
         [HttpGet()]
         public ActionResult<List<Article>> GetArticles()
         {
-            var articles = _articleService.GetArticles();
+            var articles = _articleService.GetAll();
 
             return Ok(_mapper.Map<List<ArticleDto>>(articles));
         }
@@ -34,7 +34,7 @@ namespace LanguageTrainer.API.Controllers
         [HttpGet("{id}")]
         public ActionResult<Article> GetArticle(int id)
         {
-            var article = _articleService.GetArticle(id);
+            var article = _articleService.Get(id);
 
             if (article == null)
                 return new NotFoundResult();
@@ -48,7 +48,7 @@ namespace LanguageTrainer.API.Controllers
             if (articleDto == null)
                 return new BadRequestResult();
 
-            var result = _articleService.CreateArticle(_mapper.Map<Article>(articleDto));
+            var result = _articleService.Create(_mapper.Map<Article>(articleDto));
 
             return new CreatedResult("api/articles", result);
         }

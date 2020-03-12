@@ -4,14 +4,16 @@ using LanguageTrainer.API.DBModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LanguageTrainer.API.Migrations
 {
     [DbContext(typeof(LanguageTrainerContext))]
-    partial class LanguageTrainerContextModelSnapshot : ModelSnapshot
+    [Migration("20200308035118_Mistakes")]
+    partial class Mistakes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,45 +43,6 @@ namespace LanguageTrainer.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Articles");
-                });
-
-            modelBuilder.Entity("LanguageTrainer.API.Models.Mistake.Mistake", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ArticleId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Correct")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Error")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Mistakes");
-                });
-
-            modelBuilder.Entity("LanguageTrainer.API.Models.Source.Source", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Sources");
                 });
 #pragma warning restore 612, 618
         }

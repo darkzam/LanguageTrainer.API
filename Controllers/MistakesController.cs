@@ -31,7 +31,7 @@ namespace LanguageTrainer.API.Controllers
         [Route("Create")]
         public IActionResult Create()
         {
-            return View();
+            return new OkResult();
         }
     }
 }

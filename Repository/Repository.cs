@@ -22,6 +22,11 @@ namespace LanguageTrainer.API.Repository
             _dbContext.Set<TEntity>().Add(entity);
         }
 
+        public void Update(TEntity entity)
+        {
+            _dbContext.Set<TEntity>().Update(entity);
+        }
+
         public void Remove(TEntity entity)
         {
             _dbContext.Set<TEntity>().Remove(entity);
