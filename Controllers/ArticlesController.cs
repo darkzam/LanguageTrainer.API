@@ -1,4 +1,5 @@
-﻿using LanguageTrainer.API.Models.Article;
+﻿using AutoMapper;
+using LanguageTrainer.API.Models.Article;
 using LanguageTrainer.API.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,40 +13,75 @@ namespace LanguageTrainer.API.Controllers
     [Route("api/articles")]
     public class ArticlesController : ControllerBase
     {
-        private readonly IArticleService _article;
-        public ArticlesController(IArticleService article)
+        private readonly IArticleService _articleService;
+        private readonly IMapper _mapper;
+        public ArticlesController(IArticleService articleService, IMapper mapper)
         {
-            _article = article;
+            _articleService = articleService ??
+                throw new ArgumentNullException(nameof(articleService));
+            _mapper = mapper ??
+                throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet()]
         public ActionResult<List<Article>> GetArticles()
         {
-            var articles = _article.GetArticles();
+            var articles = _articleService.GetAll();
 
-            return Ok(articles);
+            return Ok(_mapper.Map<List<ArticleDto>>(articles));
         }
 
         [HttpGet("{id}")]
         public ActionResult<Article> GetArticle(int id)
         {
-            var article = _article.GetArticle(id);
+            var article = _articleService.Get(id);
 
             if (article == null)
                 return new NotFoundResult();
 
-            return Ok(article);
+            return Ok(_mapper.Map<ArticleDto>(article));
         }
 
         [HttpPost()]
-        public ActionResult<Article> CreateArticle([FromBody]Article article)
+        public ActionResult<Article> CreateArticle([FromBody]ArticleDto articleDto)
         {
-            if (article == null)
+            if (articleDto == null)
                 return new BadRequestResult();
 
-            var result = _article.CreateArticle(article);
+            var result = _articleService.Create(_mapper.Map<Article>(articleDto));
 
             return new CreatedResult("api/articles", result);
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult RemoveArticle(string id)
+        {
+            var article = _articleService.Get(int.Parse(id));
+
+            if (article == null)
+                return new NotFoundResult();
+
+            _articleService.Remove(article);
+
+            return Ok();
+        }
+
+        [HttpPut()]
+        public ActionResult<Article> UpdateArticle([FromBody]ArticleDto articleDto)
+        {
+            if (articleDto == null)
+                return new BadRequestResult();
+
+            var article = _articleService.Get(articleDto.Id);
+
+            if (article == null)
+                return new NotFoundResult();
+
+            _mapper.Map(articleDto, article);
+
+            _articleService.Update(article);
+
+            return NoContent();
         }
     }
 }

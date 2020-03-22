@@ -1,0 +1,67 @@
+﻿@model LanguageTrainer.API.Models.Mistake.Mistake
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css" />
+    <title>
+        Prototype Mistakes CRUD
+    </title>
+</head>
+<body>
+
+    <div class="ui padded centered grid">
+
+        <div class="column">
+
+            <h1> Prototype Mistakes CRUD</h1>
+
+            <table class="ui celled table">
+                <thead>
+                    <tr>
+                        <th>
+                            Id
+                        </th>
+
+                        <th>
+                            Error
+                        </th>
+
+                        <th>
+                            Answer
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="ui three column grid">
+                <div class="column">
+
+                    <h2>Create Mistake</h2>
+
+                    @using (Html.BeginForm("Create", "Mistakes", FormMethod.Post, new { @class = "ui form" }))
+                    {
+                        <div class="field">
+                            @Html.LabelFor(model => model.Error)
+                            @Html.TextBoxFor(model => model.Error)
+                        </div>
+
+                        <button class="ui button" type="submit">Create Mistake</button>
+                    }
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</body>
+</html>

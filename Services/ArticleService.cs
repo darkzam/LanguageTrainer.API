@@ -1,4 +1,6 @@
 ﻿using LanguageTrainer.API.Models.Article;
+using LanguageTrainer.API.Repository;
+using LanguageTrainer.API.Repository.Interfaces;
 using LanguageTrainer.API.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -9,28 +11,44 @@ namespace LanguageTrainer.API.Services
 {
     public class ArticleService : IArticleService
     {
-        private List<Article> _articles = new List<Article>();
+        private readonly IUnitOfWork _unitOfWork;
 
-        public Article CreateArticle(Article article)
+        public ArticleService(IUnitOfWork unitOfWork)
         {
-            _articles.Add(article);
+            _unitOfWork = unitOfWork ??
+                throw new ArgumentNullException(nameof(unitOfWork));
+        }
+
+        public Article Create(Article article)
+        {
+            _unitOfWork.Articles.Add(article);
+            _unitOfWork.Complete();
 
             return article;
         }
 
-        public List<Article> GetArticles()
+        public List<Article> GetAll()
         {
-            return _articles;
+            return (List<Article>)_unitOfWork.Articles.GetAll();
         }
 
-        public Article GetArticle(int id)
+        public Article Get(int id)
         {
-            return _articles.Where(item => item.Id == id).ToList().FirstOrDefault();
+            return _unitOfWork.Articles.Get(id);
         }
 
-        public Article Update(int id)
+        public Article Update(Article article)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Articles.Update(article);
+            _unitOfWork.Complete();
+
+            return _unitOfWork.Articles.Get(article.Id);
+        }
+
+        public int Remove(Article article)
+        {
+            _unitOfWork.Articles.Remove(article);
+            return _unitOfWork.Complete();
         }
     }
 }
