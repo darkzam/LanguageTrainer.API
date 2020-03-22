@@ -1,5 +1,4 @@
-﻿using LanguageTrainer.API.Models.Article;
-using LanguageTrainer.API.Repository;
+﻿using LanguageTrainer.API.Models.Mistake;
 using LanguageTrainer.API.Repository.Interfaces;
 using LanguageTrainer.API.Services.Interfaces;
 using System;
@@ -9,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace LanguageTrainer.API.Services
 {
-    public class ArticleService : BaseService<Article>, IArticleService
+    public class MistakeService: BaseService<Mistake>, IMistakeService
     {
-        public ArticleService(IUnitOfWork unitOfWork) : base(unitOfWork)
+        public MistakeService(IUnitOfWork unitOfWork): base(unitOfWork)
         {
         }
     }

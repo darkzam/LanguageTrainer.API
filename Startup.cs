@@ -39,6 +39,7 @@ namespace LanguageTrainer.API
                 });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IArticleService, ArticleService>();
+            services.AddScoped<IMistakeService, MistakeService>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }

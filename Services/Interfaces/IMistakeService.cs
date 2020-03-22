@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LanguageTrainer.API.Services.Interfaces
 {
-    public interface IMistakeService: IService<Mistake>
+    public interface IMistakeService : IBaseService<Mistake>
     {
     }
 }
