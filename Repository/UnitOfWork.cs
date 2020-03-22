@@ -12,13 +12,15 @@ namespace LanguageTrainer.API.Repository
     {
         private readonly LanguageTrainerContext _context;
         public IArticleRepository Articles { get; private set; }
+        public IMistakeRepository Mistakes { get; private set; }
 
         public UnitOfWork(LanguageTrainerContext context)
         {
             _context = context;
-         //   _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            //   _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
 
             Articles = new ArticleRepository(context);
+            Mistakes = new MistakeRepository(context);
         }
 
         public int Complete()

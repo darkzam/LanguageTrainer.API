@@ -9,6 +9,7 @@ namespace LanguageTrainer.API.Repository.Interfaces
     public interface IUnitOfWork : IDisposable
     {
         IArticleRepository Articles { get; }
+        IMistakeRepository Mistakes { get; }
         int Complete();
     }
 }

@@ -16,19 +16,19 @@ namespace LanguageTrainer.API.Controllers
         {
         }
 
-        [Route("")]
+        [HttpGet()]
         public IActionResult GetAll()
         {
             return View("Index");
         }
 
-        [Route("{id}")]
+        [HttpGet("{id}")]
         public IActionResult Get(string id)
         {
             return View();
         }
 
-        [Route("Create")]
+        [HttpPost("Create")]
         public IActionResult Create()
         {
             return new OkResult();
