@@ -12,7 +12,7 @@ namespace LanguageTrainer.API.Repository
     {
         private readonly LanguageTrainerContext _context;
 
-        private readonly Dictionary<string, IBaseRepo> repositories;
+        private readonly Dictionary<string, IBaseRepo> repositories = new Dictionary<string, IBaseRepo>();
         public UnitOfWork(LanguageTrainerContext context)
         {
             _context = context;

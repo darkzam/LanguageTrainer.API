@@ -15,7 +15,7 @@ namespace LanguageTrainer.API.Services
         public BaseService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _repository = (IRepository<TEntity>)_unitOfWork.GetRepo(nameof(TEntity));
+            _repository = (IRepository<TEntity>)_unitOfWork.GetRepo(typeof(TEntity).Name);
         }
 
         public TEntity Create(TEntity article)
