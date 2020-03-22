@@ -33,7 +33,10 @@ namespace LanguageTrainer.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<LanguageTrainerContext>(options =>
-                { options.UseSqlServer(Configuration.GetConnectionString("SqlConnectionString")); });
+                {
+                    options.UseSqlServer(Configuration.GetConnectionString("SqlConnectionString"));
+                    options.EnableSensitiveDataLogging();
+                });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IArticleService, ArticleService>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

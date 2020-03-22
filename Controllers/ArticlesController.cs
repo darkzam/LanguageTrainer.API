@@ -52,5 +52,36 @@ namespace LanguageTrainer.API.Controllers
 
             return new CreatedResult("api/articles", result);
         }
+
+        [HttpDelete("{id}")]
+        public ActionResult RemoveArticle(string id)
+        {
+            var article = _articleService.Get(int.Parse(id));
+
+            if (article == null)
+                return new NotFoundResult();
+
+            _articleService.Remove(article);
+
+            return Ok();
+        }
+
+        [HttpPut()]
+        public ActionResult<Article> UpdateArticle([FromBody]ArticleDto articleDto)
+        {
+            if (articleDto == null)
+                return new BadRequestResult();
+
+            var article = _articleService.Get(articleDto.Id);
+
+            if (article == null)
+                return new NotFoundResult();
+
+            _mapper.Map(articleDto, article);
+
+            _articleService.Update(article);
+
+            return NoContent();
+        }
     }
 }

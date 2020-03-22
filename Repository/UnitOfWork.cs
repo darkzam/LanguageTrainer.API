@@ -1,5 +1,6 @@
 ﻿using LanguageTrainer.API.DBModels;
 using LanguageTrainer.API.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace LanguageTrainer.API.Repository
         public UnitOfWork(LanguageTrainerContext context)
         {
             _context = context;
+         //   _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
 
             Articles = new ArticleRepository(context);
         }

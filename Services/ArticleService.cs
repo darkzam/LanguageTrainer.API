@@ -15,7 +15,7 @@ namespace LanguageTrainer.API.Services
 
         public ArticleService(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = unitOfWork ?? 
+            _unitOfWork = unitOfWork ??
                 throw new ArgumentNullException(nameof(unitOfWork));
         }
 
