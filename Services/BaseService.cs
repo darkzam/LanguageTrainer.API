@@ -18,17 +18,17 @@ namespace LanguageTrainer.API.Services
             _repository = (IRepository<TEntity>)_unitOfWork.GetRepo(typeof(TEntity).Name);
         }
 
-        public TEntity Create(TEntity article)
+        public TEntity Create(TEntity entity)
         {
-            _repository.Add(article);
+            _repository.Add(entity);
             _unitOfWork.Complete();
 
-            return article;
+            return entity;
         }
 
         public IEnumerable<TEntity> GetAll()
         {
-            return (List<TEntity>)_repository.GetAll();
+            return _repository.GetAll();
         }
 
         public TEntity Get(int id)
@@ -36,15 +36,15 @@ namespace LanguageTrainer.API.Services
             return _repository.Get(id);
         }
 
-        public int Update(TEntity article)
+        public int Update(TEntity entity)
         {
-            _repository.Update(article);
+            _repository.Update(entity);
             return _unitOfWork.Complete();
         }
 
-        public int Remove(TEntity article)
+        public int Remove(TEntity entity)
         {
-            _repository.Remove(article);
+            _repository.Remove(entity);
             return _unitOfWork.Complete();
         }
     }
