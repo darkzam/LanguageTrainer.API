@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using LanguageTrainer.API.Models.Article;
+using LanguageTrainer.API.Models.Mistake;
+using LanguageTrainer.API.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +16,19 @@ namespace LanguageTrainer.API.Controllers
     [Route("Mistakes")]
     public class MistakesController : Controller
     {
-        public MistakesController()
+        private readonly IMistakeService _mistakeService;
+        private readonly IMapper _mapper;
+        public MistakesController(IMistakeService mistakeService, IMapper mapper)
         {
+            _mistakeService = mistakeService ?? throw new ArgumentNullException(nameof(mistakeService));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet()]
         public IActionResult GetAll()
         {
-            return View("Index");
+            var mistakes = (List<Mistake>)_mistakeService.GetAll();
+            return View("Index", mistakes);
         }
 
         [HttpGet("{id}")]
@@ -29,9 +38,15 @@ namespace LanguageTrainer.API.Controllers
         }
 
         [HttpPost("Create")]
-        public IActionResult Create()
+        public IActionResult Create(Mistake mistake)
         {
-            return new OkResult();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            _mistakeService.Create(mistake);
+            return RedirectToAction("GetAll", "Mistakes");
         }
     }
 }

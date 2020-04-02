@@ -1,0 +1,21 @@
+﻿@model LanguageTrainer.API.Models.Mistake.Mistake
+
+    <div class="ui segment">
+        <h3>Create Mistake</h3>
+
+        @using (Html.BeginForm("Create", "Mistakes", FormMethod.Post, new { @class = "ui form" }))
+        {
+            <div class="field">
+                @Html.LabelFor(model => model.Error)
+                @Html.TextBoxFor(model => model.Error)
+            </div>
+
+            <div class="field">
+                @Html.LabelFor(model => model.Correct)
+                @Html.TextBoxFor(model => model.Correct)
+            </div>
+
+            <button class="ui button" type="submit">Create Mistake</button>
+        }
+
+    </div>

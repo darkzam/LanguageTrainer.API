@@ -11,16 +11,19 @@ namespace LanguageTrainer.API.Repository
     public class UnitOfWork : IUnitOfWork
     {
         private readonly LanguageTrainerContext _context;
-        public IArticleRepository Articles { get; private set; }
-        public IMistakeRepository Mistakes { get; private set; }
 
+        private readonly Dictionary<string, IBaseRepo> repositories = new Dictionary<string, IBaseRepo>();
         public UnitOfWork(LanguageTrainerContext context)
         {
             _context = context;
-            //   _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
 
-            Articles = new ArticleRepository(context);
-            Mistakes = new MistakeRepository(context);
+            repositories.Add("Article", new ArticleRepository(context));
+            repositories.Add("Mistake", new MistakeRepository(context));
+        }
+
+        public IBaseRepo GetRepo(string entityName)
+        {
+            return repositories[entityName];
         }
 
         public int Complete()

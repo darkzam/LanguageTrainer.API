@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LanguageTrainer.API.Services.Interfaces
 {
-    public interface IArticleService : IService<Article>
+    public interface IArticleService : IBaseService<Article>
     {
     }
 }

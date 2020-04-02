@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace LanguageTrainer.API.Repository.Interfaces
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork
     {
-        IArticleRepository Articles { get; }
-        IMistakeRepository Mistakes { get; }
+        IBaseRepo GetRepo(string entityName);
         int Complete();
     }
 }

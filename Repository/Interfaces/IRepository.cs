@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LanguageTrainer.API.Repository.Interfaces
 {
-    public interface IRepository<TEntity> where TEntity : class
+    public interface IRepository<TEntity> : IBaseRepo where TEntity : class
     {
         public void Add(TEntity entity);
 
