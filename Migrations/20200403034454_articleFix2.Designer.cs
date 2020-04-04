@@ -4,14 +4,16 @@ using LanguageTrainer.API.DBModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LanguageTrainer.API.Migrations
 {
     [DbContext(typeof(LanguageTrainerContext))]
-    partial class LanguageTrainerContextModelSnapshot : ModelSnapshot
+    [Migration("20200403034454_articleFix2")]
+    partial class articleFix2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

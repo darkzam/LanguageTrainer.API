@@ -1,5 +1,5 @@
 ﻿using LanguageTrainer.API.DBModels;
-using LanguageTrainer.API.Models.Mistake;
+using LanguageTrainer.API.Models;
 using LanguageTrainer.API.Repository.Interfaces;
 using System;
 using System.Collections.Generic;

@@ -1,10 +1,10 @@
 ﻿namespace LanguageTrainer.API.Models
 {
-    public class Mistake
+    public class MistakeDto
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public Source Source { get; set; }
+        public int SourceId { get; set; }
         public string Error { get; set; }
         public string Answer { get; set; }
     }

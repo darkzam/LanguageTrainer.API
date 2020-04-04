@@ -1,4 +1,4 @@
-﻿using LanguageTrainer.API.Models.Article;
+﻿using LanguageTrainer.API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

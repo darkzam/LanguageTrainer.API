@@ -1,13 +1,10 @@
 ﻿using AutoMapper;
-using LanguageTrainer.API.Models.Article;
-using LanguageTrainer.API.Models.Mistake;
+using LanguageTrainer.API.Models;
 using LanguageTrainer.API.Services.Interfaces;
+using LanguageTrainer.API.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
 
 namespace LanguageTrainer.API.Controllers
 {
@@ -38,14 +35,14 @@ namespace LanguageTrainer.API.Controllers
         }
 
         [HttpPost("Create")]
-        public IActionResult Create(Mistake mistake)
+        public IActionResult Create(CreateMistakeViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            _mistakeService.Create(mistake);
+            //_mistakeService.Create(mistake);
             return RedirectToAction("GetAll", "Mistakes");
         }
     }
