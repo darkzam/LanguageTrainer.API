@@ -1,4 +1,4 @@
-﻿@model List<LanguageTrainer.API.Models.Mistake.Mistake>
+﻿@model List<LanguageTrainer.API.Models.Mistake>
 
 <!DOCTYPE html>
 
@@ -48,14 +48,20 @@
                             </td>
 
                             <td>
-
+                              @if(@mistake.Source == null)
+                              {
+                                   <p>No Source</p>
+                              }else
+                              {
+                                  @mistake.Source.Id
+                              }
                             </td>
 
                             <td>
                                 @mistake.Error
                             </td>
                             <td>
-                                @mistake.Correct
+                                @mistake.Answer
                             </td>
                         </tr>
                     }
@@ -66,7 +72,13 @@
             <div class="ui three column grid">
                 <div class="column">
 
-                    @await Html.PartialAsync("Create", new LanguageTrainer.API.Models.Mistake.Mistake())
+                    @await Html.PartialAsync("Create",
+                                            new LanguageTrainer.API.ViewModels.CreateMistakeViewModel()
+                                           {
+                                               MistakeDto = new LanguageTrainer.API.Models.MistakeDto(),
+                                               SourceTypes = new List<LanguageTrainer.API.Models.SourceType>(),
+                                               Sources = new List<LanguageTrainer.API.Models.Source>()
+                                           });
 
                 </div>
             </div>

@@ -1,5 +1,5 @@
 ﻿using LanguageTrainer.API.DBModels;
-using LanguageTrainer.API.Models.Article;
+using LanguageTrainer.API.Models;
 using LanguageTrainer.API.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;

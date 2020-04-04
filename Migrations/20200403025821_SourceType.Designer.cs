@@ -4,14 +4,16 @@ using LanguageTrainer.API.DBModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LanguageTrainer.API.Migrations
 {
     [DbContext(typeof(LanguageTrainerContext))]
-    partial class LanguageTrainerContextModelSnapshot : ModelSnapshot
+    [Migration("20200403025821_SourceType")]
+    partial class SourceType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,9 +33,6 @@ namespace LanguageTrainer.API.Migrations
 
                     b.Property<string>("Genre")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SourceTypeId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
@@ -81,6 +80,9 @@ namespace LanguageTrainer.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("EntityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SourceTypeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

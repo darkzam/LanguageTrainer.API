@@ -1,11 +1,6 @@
-﻿using LanguageTrainer.API.Models.Article;
-using LanguageTrainer.API.Repository;
+﻿using LanguageTrainer.API.Models;
 using LanguageTrainer.API.Repository.Interfaces;
 using LanguageTrainer.API.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LanguageTrainer.API.Services
 {

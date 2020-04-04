@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using LanguageTrainer.API.Models.Article;
+using LanguageTrainer.API.Models;
 using LanguageTrainer.API.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
