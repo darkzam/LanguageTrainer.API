@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace LanguageTrainer.API.Repository
 {
-    public class MistakeRepository : Repository<Mistake>, IMistakeRepository
+    public class SourceTypeRepository : Repository<SourceType>, ISourceTypeRepository
     {
-        public MistakeRepository(LanguageTrainerContext context) : base(context)
-        { }
+        public SourceTypeRepository(LanguageTrainerContext context) : base(context)
+        {
+        }
 
         public LanguageTrainerContext LanguageTrainerContext
         {

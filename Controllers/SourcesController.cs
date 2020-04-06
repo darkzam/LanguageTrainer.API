@@ -1,26 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using LanguageTrainer.API.Controllers.SimpleCrud;
+using LanguageTrainer.API.Models;
+using LanguageTrainer.API.Services.Interfaces;
 
 namespace LanguageTrainer.API.Controllers
 {
-    [Controller]
-    public class SourcesController : Controller
+    public class SourcesController : SimpleCrudController<Source, SourceDto>
     {
-        public SourcesController()
+        public SourcesController(ISourceService sourceService,
+                                IMapper mapper) : base(sourceService, mapper)
         {
-        }
-
-        public IActionResult Get()
-        {
-            return View();
-        }
-
-        public IActionResult Create()
-        {
-            return View();
         }
     }
 }

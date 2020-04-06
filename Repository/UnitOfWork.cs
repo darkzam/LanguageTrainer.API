@@ -19,6 +19,8 @@ namespace LanguageTrainer.API.Repository
 
             repositories.Add("Article", new ArticleRepository(context));
             repositories.Add("Mistake", new MistakeRepository(context));
+            repositories.Add("Source", new SourceRepository(context));
+            repositories.Add("SourceType", new SourceTypeRepository(context));
         }
 
         public IBaseRepo GetRepo(string entityName)

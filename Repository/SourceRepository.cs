@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace LanguageTrainer.API.Repository
 {
-    public class MistakeRepository : Repository<Mistake>, IMistakeRepository
+    public class SourceRepository : Repository<Source>, ISourceRepository
     {
-        public MistakeRepository(LanguageTrainerContext context) : base(context)
+        public SourceRepository(LanguageTrainerContext context) : base(context)
         { }
 
         public LanguageTrainerContext LanguageTrainerContext

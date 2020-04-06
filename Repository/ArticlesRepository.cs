@@ -13,18 +13,7 @@ namespace LanguageTrainer.API.Repository
     public class ArticleRepository : Repository<Article>, IArticleRepository
     {
         public ArticleRepository(LanguageTrainerContext context) : base(context)
-        {
-        }
-
-        public IEnumerable<Article> GetArticlesByGenre(int genreEnum)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Article> GetLongestArticle()
-        {
-            throw new NotImplementedException();
-        }
+        { }
 
         public LanguageTrainerContext LanguageTrainerContext
         {

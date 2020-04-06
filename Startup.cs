@@ -40,8 +40,10 @@ namespace LanguageTrainer.API
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IArticleService, ArticleService>();
             services.AddScoped<IMistakeService, MistakeService>();
+            services.AddScoped<ISourceService, SourceService>();
+            services.AddScoped<ISourceTypeService, SourceTypeService>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

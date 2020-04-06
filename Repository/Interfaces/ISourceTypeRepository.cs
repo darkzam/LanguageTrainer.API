@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LanguageTrainer.API.Repository.Interfaces
 {
-    public interface IArticleRepository : IRepository<Article>
+    public interface ISourceTypeRepository : IRepository<SourceType>
     {
     }
 }
