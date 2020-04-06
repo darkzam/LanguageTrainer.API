@@ -17,10 +17,10 @@ namespace LanguageTrainer.API.Repository
         {
             _context = context;
 
-            repositories.Add("Article", new ArticleRepository(context));
             repositories.Add("Mistake", new MistakeRepository(context));
             repositories.Add("Source", new SourceRepository(context));
             repositories.Add("SourceType", new SourceTypeRepository(context));
+            repositories.Add("MistakesSources", new MistakesSourcesRepository(context));
         }
 
         public IBaseRepo GetRepo(string entityName)

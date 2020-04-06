@@ -1,24 +1,25 @@
 ﻿using LanguageTrainer.API.DBModels;
 using LanguageTrainer.API.Models;
 using LanguageTrainer.API.Repository.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace LanguageTrainer.API.Repository
 {
-    public class ArticleRepository : Repository<Article>, IArticleRepository
+    public class MistakesSourcesRepository : Repository<MistakesSources>, IMistakesSourcesRepository
     {
-        public ArticleRepository(LanguageTrainerContext context) : base(context)
-        { }
+        public MistakesSourcesRepository(LanguageTrainerContext context) : base(context)
+        {
+        }
 
         public LanguageTrainerContext LanguageTrainerContext
         {
-            get { return _dbContext as LanguageTrainerContext; }
+            get
+            {
+                return _dbContext as LanguageTrainerContext;
+            }
         }
-
     }
 }

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LanguageTrainer.API.Services.Interfaces
+namespace LanguageTrainer.API.Repository.Interfaces
 {
-    public interface IArticleService : IBaseService<Article>
+    public interface IMistakesSourcesRepository : IRepository<MistakesSources>
     {
     }
 }

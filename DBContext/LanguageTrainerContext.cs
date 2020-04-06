@@ -10,8 +10,8 @@ namespace LanguageTrainer.API.DBModels
         {
         }
 
-        public DbSet<Article> Articles { get; set; }
         public DbSet<Mistake> Mistakes { get; set; }
+        public DbSet<MistakesSources> MistakesSources { get; set; }
         public DbSet<Source> Sources { get; set; }
         public DbSet<SourceType> SourceTypes { get; set; }
     }
