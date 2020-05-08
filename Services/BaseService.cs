@@ -10,8 +10,8 @@ namespace LanguageTrainer.API.Services
 {
     public class BaseService<TEntity> : IBaseService<TEntity> where TEntity : class
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IRepository<TEntity> _repository;
+        protected readonly IUnitOfWork _unitOfWork;
+        protected readonly IRepository<TEntity> _repository;
         public BaseService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;

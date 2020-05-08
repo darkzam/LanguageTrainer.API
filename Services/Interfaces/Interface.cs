@@ -8,5 +8,6 @@ namespace LanguageTrainer.API.Services.Interfaces
 {
     public interface IMistakesSourcesService: IBaseService<MistakesSources>
     {
+        IEnumerable<Source> GetMistakeSources(Mistake mistake);
     }
 }

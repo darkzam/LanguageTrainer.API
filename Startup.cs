@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace LanguageTrainer.API
 {
@@ -38,12 +39,16 @@ namespace LanguageTrainer.API
                     options.EnableSensitiveDataLogging();
                 });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IArticleService, ArticleService>();
             services.AddScoped<IMistakeService, MistakeService>();
             services.AddScoped<ISourceService, SourceService>();
+            services.AddScoped<IMistakesSourcesService, MistakesSourcesService>();
             services.AddScoped<ISourceTypeService, SourceTypeService>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllers();
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo() { Title = "Language Trainer API", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +58,13 @@ namespace LanguageTrainer.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/languageTrainer/swagger/v1/swagger.json", "Language Trainer API v1");
+            });
 
             app.UseStaticFiles();
 
