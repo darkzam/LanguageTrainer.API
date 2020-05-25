@@ -17,6 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using LanguageTrainer.Hubs;
 
 namespace LanguageTrainer.API
 {
@@ -33,6 +34,15 @@ namespace LanguageTrainer.API
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder => builder
+                .WithOrigins("http://localhost:4200")
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
+            });
+
             services.AddDbContext<LanguageTrainerContext>(options =>
                 {
                     options.UseSqlServer(Configuration.GetConnectionString("SqlConnectionString"));
@@ -49,6 +59,8 @@ namespace LanguageTrainer.API
             {
                 options.SwaggerDoc("v1", new OpenApiInfo() { Title = "Language Trainer API", Version = "v1" });
             });
+            services.AddSignalR();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +70,8 @@ namespace LanguageTrainer.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UsePathBase("/LanguageTrainer");
 
             app.UseSwagger();
 
@@ -70,10 +84,12 @@ namespace LanguageTrainer.API
 
             app.UseRouting();
 
+            app.UseCors("CorsPolicy");
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-
+                endpoints.MapHub<StreamHub>("/chatHub");
             });
         }
     }
