@@ -48,6 +48,7 @@ namespace LanguageTrainer.API
                     options.UseSqlServer(Configuration.GetConnectionString("SqlConnectionString"));
                     options.EnableSensitiveDataLogging();
                 });
+            services.AddHttpContextAccessor();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IMistakeService, MistakeService>();
             services.AddScoped<ISourceService, SourceService>();
