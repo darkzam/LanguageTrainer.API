@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -46,11 +47,11 @@ namespace LanguageTrainer.API.Controllers
 
             try
             {
-                var stream = new FileStream(@".\temp\" + file.First().Name, FileMode.Open, FileAccess.ReadWrite);
+                var stream = new FileStream(@".\temp\" + file.First().Name, FileMode.Open, FileAccess.Read, FileShare.Read);
 
                 return File(stream, "audio/mp3", true);
             }
-            catch
+            catch(Exception ex)
             {
                 return new BadRequestResult();
             }
