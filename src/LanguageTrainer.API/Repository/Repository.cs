@@ -22,6 +22,11 @@ namespace LanguageTrainer.API.Repository
             _dbContext.Set<TEntity>().Add(entity);
         }
 
+        public void Add(IEnumerable<TEntity> entities)
+        {
+            _dbContext.Set<TEntity>().AddRange(entities);
+        }
+
         public void Update(TEntity entity)
         {
             _dbContext.Set<TEntity>().Update(entity);

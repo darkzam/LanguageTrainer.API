@@ -50,6 +50,19 @@ namespace LanguageTrainer.API.Controllers
             return new CreatedAtRouteResult("api/mistakes", newMistake);
         }
 
+        [HttpPost("collection")]
+        public ActionResult<MistakeDto> Create([FromBody]List<MistakeDto> mistakeDtos)
+        {
+            if (mistakeDtos == null)
+                return new BadRequestResult();
+
+            var mistakes = _mapper.Map<List<Mistake>>(mistakeDtos);
+
+            var newMistakes = _mistakeService.Create(mistakes);
+
+            return new CreatedAtRouteResult("api/mistakes", newMistakes);
+        }
+
         [HttpDelete("{id}")]
         public ActionResult Remove(int id)
         {

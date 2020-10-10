@@ -26,6 +26,14 @@ namespace LanguageTrainer.API.Services
             return entity;
         }
 
+        public IEnumerable<TEntity> Create(IEnumerable<TEntity> entities)
+        {
+            _repository.Add(entities);
+            _unitOfWork.Complete();
+
+            return entities;
+        }
+
         public IEnumerable<TEntity> GetAll()
         {
             return _repository.GetAll();
