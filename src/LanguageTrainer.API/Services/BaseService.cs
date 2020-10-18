@@ -1,10 +1,6 @@
 ﻿using LanguageTrainer.API.Repository.Interfaces;
 using LanguageTrainer.API.Services.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 
 namespace LanguageTrainer.API.Services
 {
@@ -24,6 +20,14 @@ namespace LanguageTrainer.API.Services
             _unitOfWork.Complete();
 
             return entity;
+        }
+
+        public IEnumerable<TEntity> Create(IEnumerable<TEntity> entities)
+        {
+            _repository.Add(entities);
+            _unitOfWork.Complete();
+
+            return entities;
         }
 
         public IEnumerable<TEntity> GetAll()

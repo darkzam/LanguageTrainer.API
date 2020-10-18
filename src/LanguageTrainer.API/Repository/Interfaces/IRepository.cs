@@ -10,6 +10,8 @@ namespace LanguageTrainer.API.Repository.Interfaces
     {
         public void Add(TEntity entity);
 
+        public void Add(IEnumerable<TEntity> entities);
+
         public void Update(TEntity entity);
 
         public void Remove(TEntity entity);

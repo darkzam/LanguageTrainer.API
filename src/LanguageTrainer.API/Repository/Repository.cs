@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace LanguageTrainer.API.Repository
 {
@@ -20,6 +19,11 @@ namespace LanguageTrainer.API.Repository
         public void Add(TEntity entity)
         {
             _dbContext.Set<TEntity>().Add(entity);
+        }
+
+        public void Add(IEnumerable<TEntity> entities)
+        {
+            _dbContext.Set<TEntity>().AddRange(entities);
         }
 
         public void Update(TEntity entity)

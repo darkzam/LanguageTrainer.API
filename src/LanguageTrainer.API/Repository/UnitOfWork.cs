@@ -1,10 +1,6 @@
 ﻿using LanguageTrainer.API.DBModels;
 using LanguageTrainer.API.Repository.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LanguageTrainer.API.Repository
 {

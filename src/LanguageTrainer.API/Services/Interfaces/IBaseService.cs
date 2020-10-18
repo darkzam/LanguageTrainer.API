@@ -9,6 +9,7 @@ namespace LanguageTrainer.API.Services.Interfaces
     public interface IBaseService<TEntity> where TEntity : class
     {
         TEntity Create(TEntity entity);
+        IEnumerable<TEntity> Create(IEnumerable<TEntity> entities);
         TEntity Get(int id);
         IEnumerable<TEntity> GetAll();
         int Update(TEntity entity);
