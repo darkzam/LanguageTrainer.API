@@ -1,12 +1,14 @@
-
 using System.ComponentModel.DataAnnotations;
 
-public class Media
+namespace LanguageTrainer.API.Models
 {
-    [Key]
-    public int Id { get; set; }
+    public class Media
+    {
+        [Key]
+        public int Id { get; set; }
 
-    public string Name { get; set; }
+        public string Name { get; set; }
 
-    public string Path { get; set; }
+        public string Path { get; set; }
+    }
 }

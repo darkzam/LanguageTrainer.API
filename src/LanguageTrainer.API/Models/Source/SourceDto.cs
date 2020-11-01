@@ -8,7 +8,7 @@ namespace LanguageTrainer.API.Models
     public class SourceDto
     {
         public int Id { get; set; }
-        public int EntityId { get; set; }
+        public int SourceTypeId { get; set; }
         public string Description { get; set; }
     }
 }

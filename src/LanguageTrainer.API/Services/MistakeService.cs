@@ -1,5 +1,4 @@
 ﻿using LanguageTrainer.API.Models;
-using LanguageTrainer.API.Models.Stats;
 using LanguageTrainer.API.Repository.Interfaces;
 using LanguageTrainer.API.Services.Interfaces;
 using Newtonsoft.Json;

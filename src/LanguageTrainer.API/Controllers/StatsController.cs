@@ -1,4 +1,4 @@
-﻿using LanguageTrainer.API.Models.Stats;
+﻿using LanguageTrainer.API.Models;
 using LanguageTrainer.API.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;

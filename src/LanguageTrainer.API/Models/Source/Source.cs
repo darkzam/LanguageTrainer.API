@@ -1,9 +1,12 @@
-﻿namespace LanguageTrainer.API.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace LanguageTrainer.API.Models
 {
     public class Source
     {
+        [Key]
         public int Id { get; set; }
-        public int EntityId { get; set; }
-        public string Description { get; set; }
+        public SourceType SourceType { get; set; }
+        public string Content { get; set; }
     }
 }

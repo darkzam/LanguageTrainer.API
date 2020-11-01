@@ -1,3 +1,4 @@
+using LanguageTrainer.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -24,8 +25,8 @@ namespace LanguageTrainer.API.Controllers
                 Path = _context.HttpContext.Request.PathBase.Value + "/temp"
             });
             sources.Add(new Media { Id = 2, Name = "arrozconposho.mp3" });
-            sources.Add(new Media { Id = 3, Name = "cuca.mp3" });
-            sources.Add(new Media { Id = 4, Name = "culo.mp3" });
+            sources.Add(new Media { Id = 3, Name = "arepa.mp3" });
+            sources.Add(new Media { Id = 4, Name = "queso.mp3" });
         }
 
         [HttpGet("")]
