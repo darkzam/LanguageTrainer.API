@@ -11,6 +11,7 @@ namespace LanguageTrainer.API.Models
         public string Title { get; set; }
         public string Genre { get; set; }
         public string Author { get; set; }
+        public DateTime PublicationDate { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime LastModifiedDate { get; set; }
     }

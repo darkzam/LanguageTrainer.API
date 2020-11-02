@@ -48,7 +48,7 @@ namespace LanguageTrainer.API.Repository
 
         public IEnumerable<TEntity> GetAll()
         {
-            return _dbContext.Set<TEntity>().ToList();
+            return _dbContext.Set<TEntity>();
         }
     }
 }

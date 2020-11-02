@@ -28,7 +28,7 @@ namespace LanguageTrainer.API.Controllers
         {
             var sources = _sourceService.GetAll();
 
-            return new ObjectResult(_mapper.Map<List<SourceDto>>(sources));
+            return new OkObjectResult(_mapper.Map<List<SourceDto>>(sources));
         }
 
         [HttpGet("{id}")]
@@ -46,7 +46,7 @@ namespace LanguageTrainer.API.Controllers
         public ActionResult<SourceDto> Create([FromBody]SourceDto sourceDto)
         {
             if (sourceDto == null)
-                new BadRequestResult();
+                return new BadRequestResult();
 
             var sourceType = _sourceTypeService.Get(sourceDto.SourceTypeId);
 
