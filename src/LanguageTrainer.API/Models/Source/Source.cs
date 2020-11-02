@@ -6,7 +6,7 @@ namespace LanguageTrainer.API.Models
     {
         [Key]
         public int Id { get; set; }
-        public SourceType SourceType { get; set; }
+        public virtual SourceType SourceType { get; set; }
         public string Content { get; set; }
     }
 }

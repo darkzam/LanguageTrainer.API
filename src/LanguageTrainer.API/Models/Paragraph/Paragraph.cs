@@ -6,7 +6,7 @@ namespace LanguageTrainer.API.Models
     {
         [Key]
         public int Id { get; set; }
-        public Article Article { get; set; }
+        public virtual Article Article { get; set; }
         public string Content { get; set; }
     }
 }

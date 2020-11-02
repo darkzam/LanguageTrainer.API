@@ -40,6 +40,7 @@ namespace LanguageTrainer.API
 
             services.AddDbContext<LanguageTrainerContext>(options =>
                 {
+                    options.UseLazyLoadingProxies();
                     options.UseSqlServer(Configuration.GetConnectionString("SqlConnectionString"));
                     options.EnableSensitiveDataLogging();
                 });
