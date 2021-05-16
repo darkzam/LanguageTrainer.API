@@ -12,12 +12,15 @@ namespace LanguageTrainer.API.Controllers
     public class SourcesController : ControllerBase
     {
         private readonly ISourceService _sourceService;
+        private readonly ISourceTypeService _sourceTypeService;
         private readonly IMapper _mapper;
         public SourcesController(ISourceService sourceService,
+                                ISourceTypeService sourceTypeService,
                                 IMapper mapper)
         {
             _sourceService = sourceService ?? throw new ArgumentNullException(nameof(sourceService));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _sourceTypeService = sourceTypeService ?? throw new ArgumentNullException(nameof(sourceTypeService));
         }
 
         [HttpGet()]
@@ -25,7 +28,7 @@ namespace LanguageTrainer.API.Controllers
         {
             var sources = _sourceService.GetAll();
 
-            return new ObjectResult(_mapper.Map<List<SourceDto>>(sources));
+            return new OkObjectResult(_mapper.Map<List<SourceDto>>(sources));
         }
 
         [HttpGet("{id}")]
@@ -43,9 +46,16 @@ namespace LanguageTrainer.API.Controllers
         public ActionResult<SourceDto> Create([FromBody]SourceDto sourceDto)
         {
             if (sourceDto == null)
-                new BadRequestResult();
+                return new BadRequestResult();
+
+            var sourceType = _sourceTypeService.Get(sourceDto.SourceTypeId);
+
+            if (sourceType == null)
+                return NotFound();
 
             var source = _mapper.Map<Source>(sourceDto);
+
+            source.SourceType = sourceType;
 
             var newSource = _sourceService.Create(source);
 
@@ -63,7 +73,14 @@ namespace LanguageTrainer.API.Controllers
             if (source == null)
                 return NotFound();
 
+            var sourceType = _sourceTypeService.Get(sourceDto.SourceTypeId);
+
+            if (sourceType == null)
+                return NotFound();
+
             _mapper.Map(sourceDto, source);
+
+            source.SourceType = sourceType;
 
             _sourceService.Update(source);
 

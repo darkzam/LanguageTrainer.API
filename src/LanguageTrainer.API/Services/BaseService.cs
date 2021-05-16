@@ -2,9 +2,7 @@
 using LanguageTrainer.API.Services.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace LanguageTrainer.API.Services
 {
@@ -24,6 +22,14 @@ namespace LanguageTrainer.API.Services
             _unitOfWork.Complete();
 
             return entity;
+        }
+
+        public IEnumerable<TEntity> Create(IEnumerable<TEntity> entities)
+        {
+            _repository.Add(entities);
+            _unitOfWork.Complete();
+
+            return entities;
         }
 
         public IEnumerable<TEntity> GetAll()
@@ -46,6 +52,13 @@ namespace LanguageTrainer.API.Services
         {
             _repository.Remove(entity);
             return _unitOfWork.Complete();
+        }
+
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        {
+            var result = _repository.Find(predicate);
+
+            return result;
         }
     }
 }

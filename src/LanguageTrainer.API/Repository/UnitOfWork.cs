@@ -1,10 +1,6 @@
 ﻿using LanguageTrainer.API.DBModels;
 using LanguageTrainer.API.Repository.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LanguageTrainer.API.Repository
 {
@@ -21,6 +17,7 @@ namespace LanguageTrainer.API.Repository
             repositories.Add("Source", new SourceRepository(context));
             repositories.Add("SourceType", new SourceTypeRepository(context));
             repositories.Add("MistakesSources", new MistakesSourcesRepository(context));
+            repositories.Add("Article", new ArticleRepository(context));
         }
 
         public IBaseRepo GetRepo(string entityName)

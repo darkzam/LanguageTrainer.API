@@ -11,7 +11,8 @@ namespace LanguageTrainer.API.Profiles
     {
         public SourceProfile()
         {
-            CreateMap<Source, SourceDto>();
+            CreateMap<Source, SourceDto>().ForMember(dest => dest.SourceTypeId,
+                                                     opt => opt.MapFrom(src => src.SourceType.Id));
 
             CreateMap<SourceDto, Source>();
         }

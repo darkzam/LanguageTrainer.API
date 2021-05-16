@@ -4,14 +4,16 @@ using LanguageTrainer.API.DBModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LanguageTrainer.API.Migrations
 {
     [DbContext(typeof(LanguageTrainerContext))]
-    partial class LanguageTrainerContextModelSnapshot : ModelSnapshot
+    [Migration("20201101230428_ArticleSourceFK")]
+    partial class ArticleSourceFK
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,9 +38,6 @@ namespace LanguageTrainer.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("LastModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("PublicationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("SourceId")
@@ -73,15 +72,10 @@ namespace LanguageTrainer.API.Migrations
                     b.Property<DateTime>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("SourceId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SourceId");
 
                     b.ToTable("Audios");
                 });
@@ -184,13 +178,6 @@ namespace LanguageTrainer.API.Migrations
                 });
 
             modelBuilder.Entity("LanguageTrainer.API.Models.Article", b =>
-                {
-                    b.HasOne("LanguageTrainer.API.Models.Source", "Source")
-                        .WithMany()
-                        .HasForeignKey("SourceId");
-                });
-
-            modelBuilder.Entity("LanguageTrainer.API.Models.Audio", b =>
                 {
                     b.HasOne("LanguageTrainer.API.Models.Source", "Source")
                         .WithMany()
