@@ -4,14 +4,16 @@ using LanguageTrainer.API.DBModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LanguageTrainer.API.Migrations
 {
     [DbContext(typeof(LanguageTrainerContext))]
-    partial class LanguageTrainerContextModelSnapshot : ModelSnapshot
+    [Migration("20201101230120_newArticlesAudios")]
+    partial class newArticlesAudios
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,18 +40,10 @@ namespace LanguageTrainer.API.Migrations
                     b.Property<DateTime>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("PublicationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("SourceId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SourceId");
 
                     b.ToTable("Articles");
                 });
@@ -73,15 +67,10 @@ namespace LanguageTrainer.API.Migrations
                     b.Property<DateTime>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("SourceId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SourceId");
 
                     b.ToTable("Audios");
                 });
@@ -132,15 +121,7 @@ namespace LanguageTrainer.API.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ArticleId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ArticleId");
 
                     b.ToTable("Paragraphs");
                 });
@@ -181,27 +162,6 @@ namespace LanguageTrainer.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SourceTypes");
-                });
-
-            modelBuilder.Entity("LanguageTrainer.API.Models.Article", b =>
-                {
-                    b.HasOne("LanguageTrainer.API.Models.Source", "Source")
-                        .WithMany()
-                        .HasForeignKey("SourceId");
-                });
-
-            modelBuilder.Entity("LanguageTrainer.API.Models.Audio", b =>
-                {
-                    b.HasOne("LanguageTrainer.API.Models.Source", "Source")
-                        .WithMany()
-                        .HasForeignKey("SourceId");
-                });
-
-            modelBuilder.Entity("LanguageTrainer.API.Models.Paragraph", b =>
-                {
-                    b.HasOne("LanguageTrainer.API.Models.Article", "Article")
-                        .WithMany()
-                        .HasForeignKey("ArticleId");
                 });
 
             modelBuilder.Entity("LanguageTrainer.API.Models.Source", b =>

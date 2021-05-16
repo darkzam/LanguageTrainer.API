@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LanguageTrainer.API.Models.Stats
+namespace LanguageTrainer.API.Models
 {
     public class MistakeStatsDto
     {

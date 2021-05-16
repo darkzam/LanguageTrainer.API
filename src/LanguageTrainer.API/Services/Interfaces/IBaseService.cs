@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace LanguageTrainer.API.Services.Interfaces
@@ -14,5 +15,6 @@ namespace LanguageTrainer.API.Services.Interfaces
         IEnumerable<TEntity> GetAll();
         int Update(TEntity entity);
         int Remove(TEntity entity);
+        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
     }
 }
